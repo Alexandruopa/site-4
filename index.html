@@ -3,23 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAMES SANTIAGO JORGE | AgTech & Engineering Solutions</title>
-    <meta name="description" content="Leading architectural, engineering, and agricultural enterprise based in Buenos Aires, Argentina. Empowering farming and cattle ranching with digital technology.">
+    <title>DENTAL STUDIO S.R.L. | Digital Ambulatory Care</title>
+    <meta name="description" content="Advanced dental care and ambulatory health services in Buenos Aires, Argentina.">
     <style>
-        /* DESIGN SYSTEM: AG-TECH & ENGINEERING */
+        /* DESIGN SYSTEM: DARK MEDICAL & GLASSMORPHISM */
         :root {
-            --primary: #111827;         /* Deep Slate / Midnight */
-            --primary-light: #1F2937;
-            --accent: #16A34A;          /* Agronomy Green */
-            --accent-hover: #15803D;
-            --accent-sec: #D97706;      /* Harvest Amber */
-            --bg-base: #F8FAFC;         /* Light Gray */
-            --bg-white: #FFFFFF;
-            --text-main: #334155;
-            --text-muted: #64748B;
-            --border-color: #E2E8F0;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-display: 'Montserrat', sans-serif;
+            --bg-deep: #0B0F19;         /* Very dark blue/black */
+            --bg-glass: rgba(16, 24, 39, 0.7);
+            --cyan-glow: #06B6D4;       /* Medical Cyan */
+            --cyan-dim: rgba(6, 182, 212, 0.15);
+            --text-light: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --font-main: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'SFMono-Regular', Consolas, monospace;
         }
 
         * {
@@ -29,511 +26,307 @@
         }
 
         body {
-            font-family: var(--font-sans);
+            font-family: var(--font-main);
+            background-color: var(--bg-deep);
+            color: var(--text-light);
             line-height: 1.6;
-            color: var(--text-main);
-            background-color: var(--bg-base);
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Abstract Medical Grid & Glow */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(6, 182, 212, 0.08), transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.05), transparent 50%);
+            z-index: -2;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* 1. NAVIGATION */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            top: 0; width: 100%;
             padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            border-bottom: 3px solid var(--accent);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glass);
+            z-index: 100;
         }
 
         .logo {
-            font-family: var(--font-display);
+            font-family: var(--font-main);
             font-size: 1.2rem;
-            font-weight: 900;
-            color: var(--primary);
-            letter-spacing: 1px;
+            font-weight: 800;
+            letter-spacing: 2px;
             text-transform: uppercase;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .logo-icon {
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-sec) 100%);
-            border-radius: 4px;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        .logo-symbol {
+            width: 14px; height: 14px;
+            background: var(--cyan-glow);
+            box-shadow: 0 0 15px var(--cyan-glow);
+            border-radius: 2px;
+            animation: pulse 3s infinite;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px var(--cyan-dim); }
+            50% { box-shadow: 0 0 20px var(--cyan-glow); }
+            100% { box-shadow: 0 0 10px var(--cyan-dim); }
         }
 
+        .nav-links { display: flex; gap: 30px; }
         .nav-links a {
+            color: var(--text-muted);
             text-decoration: none;
-            color: var(--text-main);
-            font-weight: 600;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: color 0.3s;
         }
+        .nav-links a:hover { color: var(--cyan-glow); }
 
-        .nav-links a:hover {
-            color: var(--accent);
+        /* 2. LAYOUT CONTAINERS */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 5% 50px;
         }
 
-        /* 2. HERO SECTION */
-        header {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 0 10%;
-            background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.95) 100%);
-            background-color: var(--primary);
-            position: relative;
-            color: var(--bg-white);
-            overflow: hidden;
-        }
-
-        /* Topographic / Agricultural Grid Background */
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                repeating-linear-gradient(0deg, rgba(22, 163, 74, 0.05) 0px, rgba(22, 163, 74, 0.05) 1px, transparent 1px, transparent 40px),
-                repeating-linear-gradient(90deg, rgba(22, 163, 74, 0.05) 0px, rgba(22, 163, 74, 0.05) 1px, transparent 1px, transparent 40px);
-            pointer-events: none;
-            z-index: 0;
-            transform: perspective(600px) rotateX(60deg);
-            transform-origin: bottom;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
+        /* 3. HERO SECTION */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
         }
 
         .hero-badge {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--cyan-glow);
+            background: var(--cyan-dim);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(6, 182, 212, 0.3);
             display: inline-block;
-            background: rgba(22, 163, 74, 0.15);
-            color: #4ADE80;
-            padding: 8px 24px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            border: 1px solid var(--accent);
-        }
-
-        header h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.15;
             margin-bottom: 25px;
-            letter-spacing: -1px;
-        }
-
-        header p {
-            font-size: clamp(1.1rem, 2vw, 1.3rem);
-            color: #9CA3AF;
-            max-width: 700px;
-            margin-bottom: 40px;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--bg-white);
-            padding: 16px 40px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s;
-            border: 2px solid var(--accent);
         }
 
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--accent);
-        }
-
-        /* 3. ABOUT SECTION */
-        .section {
-            padding: 100px 10%;
-        }
-
-        .bg-white {
-            background-color: var(--bg-white);
-        }
-
-        .section-header {
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1.1;
             font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 25px;
+            background: linear-gradient(to right, #fff, #94A3B8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .section-header .line {
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text {
+        .hero p {
+            font-size: 1.2rem;
             color: var(--text-muted);
-            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
         }
 
-        .about-text p {
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .highlight-box {
-            background: var(--bg-base);
+        /* 4. GLASS CARDS */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
             padding: 40px;
-            border-radius: 8px;
-            border-left: 6px solid var(--accent);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s, border-color 0.3s;
         }
 
-        /* 4. SECTORS (ENGINEERING & AGTECH) */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            background: var(--bg-white);
-            padding: 50px 40px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 4px;
-            background: var(--primary);
-            transition: background 0.3s;
-        }
-
-        .service-card:hover {
+        .glass-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
 
-        .service-card:hover::before {
-            background: var(--accent);
-        }
-
-        .service-icon {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: var(--accent);
-            margin-bottom: 20px;
-            display: inline-block;
-            background: rgba(22, 163, 74, 0.1);
-            padding: 10px 15px;
-            border-radius: 4px;
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-            font-family: var(--font-display);
-            font-weight: 800;
-        }
-
-        /* 5. AGTECH APP PROMO (CRITICAL FOR GOOGLE PLAY CONSOLE) */
-        .app-promo {
-            background: var(--primary);
-            color: var(--bg-white);
-            padding: 100px 10%;
+        .grid-2 {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .app-content h2 {
-            font-family: var(--font-display);
-            font-size: 2.8rem;
-            color: var(--bg-white);
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .app-content p {
-            font-size: 1.1rem;
-            color: #9CA3AF;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
             margin-bottom: 30px;
-            line-height: 1.7;
         }
 
-        .feature-list {
+        h2.section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* 5. APP PROMO SECTION (CRUCIAL FOR GOOGLE PLAY) */
+        .app-promo {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, transparent 100%);
+            border-left: 4px solid var(--cyan-glow);
+        }
+
+        .app-features {
             list-style: none;
-            margin-bottom: 40px;
+            margin-top: 25px;
         }
 
-        .feature-list li {
-            position: relative;
-            padding-left: 30px;
+        .app-features li {
             margin-bottom: 15px;
-            font-size: 1.05rem;
-            color: #E2E8F0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-muted);
         }
 
-        .feature-list li::before {
-            content: "■";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-size: 1.2rem;
-            line-height: 1;
+        .app-features li::before {
+            content: '';
+            display: block;
+            width: 8px; height: 8px;
+            background: var(--cyan-glow);
+            border-radius: 50%;
         }
 
-        .btn-outline {
+        .btn-glow {
             display: inline-block;
             background: transparent;
-            color: var(--accent);
-            padding: 15px 35px;
-            border-radius: 4px;
+            color: var(--cyan-glow);
+            padding: 12px 30px;
+            border: 1px solid var(--cyan-glow);
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
             text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--accent);
+            margin-top: 30px;
             transition: all 0.3s;
         }
 
-        .btn-outline:hover {
-            background: var(--accent);
-            color: var(--primary);
+        .btn-glow:hover {
+            background: var(--cyan-glow);
+            color: var(--bg-deep);
+            box-shadow: 0 0 20px var(--cyan-dim);
         }
 
-        /* CSS App Mockup */
-        .app-visual {
-            height: 100%;
-            min-height: 400px;
-            background: linear-gradient(135deg, rgba(22, 163, 74, 0.2) 0%, rgba(17, 24, 39, 0.8) 100%);
-            border: 2px dashed rgba(22, 163, 74, 0.4);
+        /* UI MOCKUP CSS */
+        .ui-mockup {
+            width: 260px;
+            height: 480px;
+            border: 8px solid #1E293B;
+            border-radius: 30px;
+            background: #0B0F19;
+            position: relative;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .ui-notch {
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 20px;
+            background: #1E293B;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .ui-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px;
             border-radius: 12px;
+            margin-top: 20px;
+        }
+        .ui-scan {
+            height: 120px;
+            background: radial-gradient(circle, var(--cyan-dim) 0%, transparent 70%);
+            border: 1px dashed var(--cyan-glow);
+            border-radius: 8px;
+            margin-top: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 40px;
-            position: relative;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--cyan-glow);
         }
 
-        /* 6. CONTACT & CORPORATE INFO (MATCHES D&B EXACTLY) */
-        .contact-container {
+        /* 6. DATA SECTION (MATCHES D&B EXACTLY) */
+        .data-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-glass);
         }
 
-        .corp-details {
-            background: var(--bg-white);
-            padding: 50px;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary);
-        }
-
-        .corp-details h3 {
-            font-family: var(--font-display);
-            font-size: 1.6rem;
-            margin-bottom: 30px;
-            color: var(--primary);
-            text-transform: uppercase;
-            font-weight: 800;
-        }
-
-        .detail-row {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .detail-row:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-bottom: 0;
-        }
-
-        .detail-label {
+        .data-label {
+            font-family: var(--font-mono);
             font-size: 0.8rem;
-            text-transform: uppercase;
             color: var(--text-muted);
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
         }
 
-        .detail-value {
-            font-size: 1.05rem;
-            color: var(--primary);
+        .data-value {
             font-weight: 600;
-            line-height: 1.5;
+            text-align: right;
         }
 
-        .contact-form {
-            background: var(--bg-white);
-            padding: 50px;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-        }
-
-        .contact-form h3 {
-            font-family: var(--font-display);
-            font-size: 1.6rem;
-            margin-bottom: 30px;
-            color: var(--primary);
-            text-transform: uppercase;
-            font-weight: 800;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 16px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            background: var(--bg-base);
-            transition: border-color 0.3s;
-        }
-
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: var(--bg-white);
-        }
-
-        .contact-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .btn-submit {
-            background: var(--primary);
-            color: var(--bg-white);
-            padding: 16px 0;
-            width: 100%;
-            border: none;
-            border-radius: 4px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: background 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .btn-submit:hover {
-            background: var(--accent);
-        }
-
-        /* 7. FOOTER & LEGAL */
+        /* 7. FOOTER */
         footer {
-            background: #0B1120;
-            color: #94A3B8;
-            padding: 80px 10% 40px;
-        }
-
-        .footer-grid {
+            border-top: 1px solid var(--border-glass);
+            padding: 60px 5%;
+            margin-top: 60px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 50px;
-            margin-bottom: 60px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 50px;
+            gap: 40px;
+            background: rgba(0,0,0,0.2);
         }
 
         .footer-col h4 {
-            color: var(--bg-white);
-            font-size: 1.1rem;
+            color: white;
             margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--cyan-glow);
         }
 
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col ul a {
-            color: #94A3B8;
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a {
+            color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             transition: color 0.3s;
         }
+        .footer-col a:hover { color: white; }
 
-        .footer-col ul a:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 992px) {
+        @media (max-width: 900px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .app-promo { flex-direction: column; }
             .nav-links { display: none; }
-            .about-grid, .app-promo, .contact-container { grid-template-columns: 1fr; }
-            header h1 { font-size: 2.8rem; }
-            .app-promo { padding: 80px 5%; }
-            .app-visual { display: none; }
         }
     </style>
 </head>
@@ -541,190 +334,134 @@
 
     <nav>
         <div class="logo">
-            <div class="logo-icon"></div>
-            GAMES SANTIAGO JORGE
+            <div class="logo-symbol"></div>
+            DENTAL STUDIO
         </div>
         <div class="nav-links">
-            <a href="#about">Corporate</a>
-            <a href="#sectors">Engineering & AgTech</a>
-            <a href="#mobile-app">B2B App Platform</a>
-            <a href="#contact">Contact</a>
+            <a href="#clinic">The Clinic</a>
+            <a href="#app">Patient Portal</a>
+            <a href="#verification">Corporate Data</a>
         </div>
     </nav>
 
-    <header>
-        <div class="hero-content">
-            <div class="hero-badge">Engineering & Precision Agriculture</div>
-            <h1>Engineering the Future of Argentine Agriculture.</h1>
-            <p>Integrating advanced architectural engineering, modern cattle ranching, and precision grain farming through innovative digital solutions.</p>
-            <a href="#mobile-app" class="btn-primary">Explore AgTech Solutions</a>
-        </div>
-    </header>
-
-    <section id="about" class="section bg-white">
-        <div class="section-header">
-            <h2>Corporate Identity</h2>
-            <div class="line"></div>
-        </div>
-        <div class="about-grid">
-            <div class="about-text">
-                <p><strong>GAMES SANTIAGO JORGE</strong> is a multi-disciplinary enterprise headquartered in Buenos Aires, Argentina. Founded and led by our Key Principal, <strong>Santiago Jorge Games</strong>, our firm carries his family name as a hallmark of quality, deeply rooted in the agricultural and engineering sectors.</p>
-                <p>We operate at the intersection of infrastructure and agronomy. Our expertise spans Architectural and Engineering Services, large-scale Oilseed and Grain Farming, and modern Cattle Ranching. By combining traditional farming with modern engineering, we ensure maximum yield and sustainability.</p>
-            </div>
-            <div class="highlight-box">
-                <h3 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 15px; text-transform: uppercase;">Industry Classification</h3>
-                <p style="color: var(--text-muted); line-height: 1.6;">
-                    • Architectural, Engineering, and Related Services<br>
-                    • Oilseed and Grain Farming / Cereal crop farms<br>
-                    • Cattle Ranching and Farming
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="sectors" class="section">
-        <div class="section-header">
-            <h2>Operational Divisions</h2>
-            <div class="line"></div>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">[ ENG ]</div>
-                <h3>Architectural & Engineering</h3>
-                <p>Providing specialized design, structural planning, and technical engineering services for commercial and large-scale agricultural infrastructures.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">[ AGR ]</div>
-                <h3>Oilseed & Grain Farming</h3>
-                <p>Managing extensive cereal crop and oilseed farms. We utilize precision agronomy techniques to optimize harvests and ensure soil health.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">[ LVS ]</div>
-                <h3>Cattle Ranching</h3>
-                <p>Sustainable cattle farming operations integrating IoT (Internet of Things) tracking systems for livestock health monitoring and herd management.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="mobile-app" class="app-promo">
-        <div class="app-content">
-            <h2>GSJ AgTech Connect App</h2>
-            <p>To unify our engineering blueprints and farming operations, <strong>GAMES SANTIAGO JORGE has developed a proprietary B2B mobile application published on the Google Play Store.</strong></p>
-            <p>The <em>GSJ AgTech Connect</em> app is a powerful tool for farm managers, architects, and agricultural engineers. It digitizes cattle tracking, monitors crop yields, and provides secure mobile access to structural engineering blueprints.</p>
-            
-            <ul class="feature-list">
-                <li>IoT Cattle Tracking: Monitor herd locations and health stats via GPS.</li>
-                <li>Crop Management: Access real-time data for oilseed and grain yields.</li>
-                <li>Digital Blueprints: Secure mobile access to architectural site plans.</li>
-                <li>B2B Contractor Portal: Streamlined communication for engineering services.</li>
-            </ul>
-            
-            <a href="#contact" class="btn-outline">Google Play Developer Support</a>
-        </div>
-        <div class="app-visual">
-            <div style="text-align: left; width: 100%;">
-                <p style="color: var(--accent); font-family: monospace; font-size: 0.9rem; margin-bottom: 10px;">> INIT GSJ_AGTECH_SYSTEM</p>
-                <p style="color: rgba(255,255,255,0.7); font-family: monospace; font-size: 0.85rem; line-height: 1.8;">
-                    SYNCING CATTLE IOT SENSORS... [OK]<br>
-                    LOADING CROP YIELD DATA... [OK]<br>
-                    FETCHING ENGINEERING BLUEPRINTS... [OK]<br>
-                    <br>
-                    <span style="color: #4ADE80;">B2B TERMINAL SECURE & ONLINE</span>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section bg-white">
-        <div class="section-header">
-            <h2>Corporate Verification & Contact</h2>
-            <div class="line"></div>
-        </div>
+    <main class="container">
         
-        <div class="contact-container">
-            <div class="corp-details">
-                <h3>Entity Registration</h3>
+        <section class="hero">
+            <div class="hero-badge">Health Care & Social Assistance</div>
+            <h1>Next-Gen Dental Care.</h1>
+            <p>Elevating ambulatory health care services in Ciudad de Buenos Aires through clinical excellence and advanced digital patient management systems.</p>
+        </section>
+
+        <div class="grid-2" id="clinic">
+            <div class="glass-card">
+                <h2 class="section-title">Clinical Operations</h2>
+                <p style="color: var(--text-muted); margin-bottom: 15px;"><strong>DENTAL STUDIO S.R.L.</strong> is a specialized health care facility based in Argentina. We operate strictly within the medical and dental sectors, providing top-tier ambulatory care to our community.</p>
+                <p style="color: var(--text-muted);">Our infrastructure bridges traditional clinical treatments with modern HealthTech solutions, ensuring that every patient receives personalized, data-driven medical attention.</p>
+            </div>
+
+            <div class="glass-card">
+                <h2 class="section-title">Sector Classification</h2>
+                <ul style="list-style: none; color: var(--text-muted); line-height: 2;">
+                    <li><span style="color: var(--cyan-glow);">[+]</span> Offices of Dentists</li>
+                    <li><span style="color: var(--cyan-glow);">[+]</span> Ambulatory Health Care Services</li>
+                    <li><span style="color: var(--cyan-glow);">[+]</span> Health Care and Social Assistance</li>
+                    <li><span style="color: var(--cyan-glow);">[+]</span> Offices and clinics of dentists</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="glass-card app-promo" id="app">
+            <div style="flex: 1;">
+                <div class="hero-badge" style="border: none; margin-bottom: 10px;">Google Play Publisher</div>
+                <h2 class="section-title">Dental Studio Connect</h2>
+                <p style="color: var(--text-muted);">
+                    To provide a seamless healthcare experience, <strong>DENTAL STUDIO S.R.L. develops and maintains a proprietary mobile application.</strong> The app serves as a secure patient portal, replacing physical paperwork and allowing remote dental monitoring.
+                </p>
                 
-                <div class="detail-row">
-                    <div class="detail-label">Legal Entity Name</div>
-                    <div class="detail-value">GAMES SANTIAGO JORGE</div>
+                <ul class="app-features">
+                    <li>Securely access your 3D jaw scans and clinical X-Rays.</li>
+                    <li>Teledentistry: Schedule video consultations with your dentist.</li>
+                    <li>Post-surgery trackers and automated medication reminders.</li>
+                    <li>HIPAA-compliant direct messaging with the clinic.</li>
+                </ul>
+                
+                <a href="#verification" class="btn-glow">View Developer Policies</a>
+            </div>
+            
+            <div class="ui-mockup">
+                <div class="ui-notch"></div>
+                <div style="margin-top: 30px; text-align: center; font-weight: bold;">Patient Dashboard</div>
+                
+                <div class="ui-card">
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Next Appointment</div>
+                    <div style="font-size: 0.9rem;">Implant Checkup</div>
+                    <div style="font-size: 0.8rem; color: var(--cyan-glow);">Oct 24, 10:00 AM</div>
                 </div>
 
-                <div class="detail-row">
-                    <div class="detail-label">Key Principal</div>
-                    <div class="detail-value">Santiago Jorge Games</div>
+                <div class="ui-scan">
+                    [ 3D SCAN VIEWER ]
                 </div>
+            </div>
+        </div>
 
-                <div class="detail-row">
-                    <div class="detail-label">Industry Sectors</div>
-                    <div class="detail-value" style="font-size: 0.95rem;">
-                        • Architectural, Engineering, and Related Services<br>
-                        • Oilseed and Grain Farming<br>
-                        • Cattle Ranching and Farming<br>
-                        • Cereal crop farms
+        <div class="grid-2" id="verification" style="margin-top: 30px;">
+            <div class="glass-card">
+                <h2 class="section-title">Entity Registration</h2>
+                <div class="data-grid">
+                    <div class="data-row">
+                        <span class="data-label">Legal Name</span>
+                        <span class="data-value">DENTAL STUDIO S.R.L.</span>
                     </div>
-                </div>
-
-                <div class="detail-row">
-                    <div class="detail-label">Registered Headquarters</div>
-                    <div class="detail-value">
-                        BULNES 304 PISO 1 DPTO D - BARRIO : ALMAGRO<br>
-                        Ciudad de Buenos Aires, 1176<br>
-                        Argentina
+                    <div class="data-row">
+                        <span class="data-label">Address</span>
+                        <span class="data-value" style="font-size: 0.9rem;">MIGUELETES 757 PISO PB<br>Ciudad de Buenos Aires, 1426<br>Argentina</span>
                     </div>
-                </div>
-
-                <div class="detail-row">
-                    <div class="detail-label">Official Communication</div>
-                    <div class="detail-value" style="color: var(--primary);">info@gamessantiagojorge.org</div>
+                    <div class="data-row">
+                        <span class="data-label">Primary Sector</span>
+                        <span class="data-value" style="font-size: 0.9rem;">Ambulatory Health Care Services</span>
+                    </div>
+                    <div class="data-row" style="border: none;">
+                        <span class="data-label">Dev Support</span>
+                        <span class="data-value" style="color: var(--cyan-glow);">info@dentalstudio.cloud</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="contact-form">
-                <h3 style="font-size: 1.4rem; margin-bottom: 20px; color: var(--primary);">Direct Inquiry</h3>
-                <form onsubmit="event.preventDefault();">
-                    <input type="text" placeholder="Full Name / Organization" required>
-                    <input type="email" placeholder="Corporate Email" required>
-                    <input type="text" placeholder="Subject (e.g., Engineering Services, AgTech App)">
-                    <textarea placeholder="How can our engineering or agricultural team assist you?" required></textarea>
-                    <button type="submit" class="btn-submit">Send Official Request</button>
+            <div class="glass-card">
+                <h2 class="section-title">Direct Inquiry</h2>
+                <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 15px;">
+                    <input type="text" placeholder="Patient ID / Name" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); padding: 12px; color: white; border-radius: 6px;">
+                    <input type="email" placeholder="Contact Email" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); padding: 12px; color: white; border-radius: 6px;">
+                    <textarea placeholder="Describe your technical or medical inquiry..." rows="3" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); padding: 12px; color: white; border-radius: 6px;"></textarea>
+                    <button class="btn-glow" style="margin-top: 0; width: 100%; cursor: pointer;">Send Secure Message</button>
                 </form>
             </div>
         </div>
-    </section>
+
+    </main>
 
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="logo" style="color: var(--bg-white); margin-bottom: 20px; font-size: 1.1rem;">
-                    <div class="logo-icon"></div>
-                    GAMES SANTIAGO JORGE
-                </div>
-                <p>Driving the future of Argentine agriculture and architectural engineering through digital innovation.</p>
-            </div>
-            
-            <div class="footer-col">
-                <h4>Mobile App Support</h4>
-                <ul>
-                    <li><a href="#">Google Play Publisher Profile</a></li>
-                    <li><a href="#">Report an App Bug / Issue</a></li>
-                    <li><a href="#"><strong>Request Account & Data Deletion</strong></a></li>
-                    <li><a href="#">App User Guide (AgTech Platform)</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h4>Legal & Compliance</h4>
-                <ul>
-                    <li><a href="#">Terms of Service (B2B)</a></li>
-                    <li><a href="#">Privacy Policy (Data Protection)</a></li>
-                    <li><a href="#">Engineering & Agriculture Standards</a></li>
-                    <li><a href="#">Cookie Policy</a></li>
-                </ul>
-            </div>
+        <div class="footer-col">
+            <h4>DENTAL STUDIO S.R.L.</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">Innovating ambulatory healthcare and dental services in Argentina through technology.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 GAMES SANTIAGO JORGE. Registered in Argentina. All rights reserved.</p>
+        <div class="footer-col">
+            <h4>App Developer Policies</h4>
+            <ul>
+                <li><a href="#">Google Play Publisher Info</a></li>
+                <li><a href="#">Report App Bug</a></li>
+                <li><a href="#" style="color: #fff; font-weight: bold;">Request Account & Data Deletion</a></li>
+                <li><a href="#">App Camera/Storage Permissions</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Clinical Compliance</h4>
+            <ul>
+                <li><a href="#">Terms of Medical Service</a></li>
+                <li><a href="#">Privacy Policy (Patient Data)</a></li>
+                <li><a href="#">Clinical Liability Disclaimer</a></li>
+                <li><a href="#">Cookie Policy</a></li>
+            </ul>
         </div>
     </footer>
 
